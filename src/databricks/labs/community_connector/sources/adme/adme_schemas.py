@@ -40,12 +40,23 @@ TABLE_TO_KIND_QUERY: dict[str, str] = {
     "Wellbore": "osdu:wks:master-data--Wellbore:*",
     "Reservoir": "osdu:wks:master-data--Reservoir:*",
     "Rock_and_Fluid": "osdu:wks:master-data--Sample:*",
+    # Seismic catalog (metadata records; trace data itself stays in ADME / SDMS)
+    "SeismicAcquisitionSurvey": "osdu:wks:master-data--SeismicAcquisitionSurvey:*",
+    "SeismicProcessingProject": "osdu:wks:master-data--SeismicProcessingProject:*",
+    "SeismicTraceData": "osdu:wks:work-product-component--SeismicTraceData:*",
+    "SeismicBinGrid": "osdu:wks:work-product-component--SeismicBinGrid:*",
+    "SeismicFileDataset": "osdu:wks:dataset--FileCollection.SEGY:*",
 }
 
 TABLE_TO_KIND_CANONICAL: dict[str, str] = {
     "Wellbore": "osdu:wks:master-data--Wellbore:1.0.0",
     "Reservoir": "osdu:wks:master-data--Reservoir:1.2.0",
     "Rock_and_Fluid": "osdu:wks:master-data--Sample:2.1.0",
+    "SeismicAcquisitionSurvey": "osdu:wks:master-data--SeismicAcquisitionSurvey:1.2.0",
+    "SeismicProcessingProject": "osdu:wks:master-data--SeismicProcessingProject:1.2.0",
+    "SeismicTraceData": "osdu:wks:work-product-component--SeismicTraceData:1.3.0",
+    "SeismicBinGrid": "osdu:wks:work-product-component--SeismicBinGrid:1.1.0",
+    "SeismicFileDataset": "osdu:wks:dataset--FileCollection.SEGY:1.1.0",
 }
 
 SUPPORTED_TABLES: list[str] = list(TABLE_TO_KIND_QUERY.keys())
@@ -171,10 +182,94 @@ ROCK_AND_FLUID_SCHEMA: StructType = StructType(
 )
 
 
+# ---------------------------------------------------------------------------
+# Seismic catalog kinds
+# ---------------------------------------------------------------------------
+# Field names follow the OSDU data definitions for the seismic master-data,
+# work-product-component and dataset kinds. Confidence is medium (same as
+# Reservoir): verify against the Schema Service of the target partition.
+# Every record also keeps the full ``data_json``, so nothing is lost if a
+# field moves between schema versions; to read OpenVDS / ZGY dataset kinds,
+# point SeismicFileDataset at them with ``kind_query_seismicfiledataset``.
+
+
+def _s(name: str) -> StructField:
+    return StructField(name, StringType(), True)
+
+
+def _d(name: str) -> StructField:
+    return StructField(name, DoubleType(), True)
+
+
+def _l(name: str) -> StructField:
+    return StructField(name, LongType(), True)
+
+
+SEISMIC_ACQUISITION_SURVEY_SCHEMA: StructType = StructType(
+    _envelope_fields()
+    + [
+        _s("ProjectID"), _s("ProjectName"), _s("ProjectBeginDate"), _s("ProjectEndDate"),
+        _s("SeismicGeometryTypeID"), _s("OperatingEnvironmentID"), _s("EnergySourceTypeID"),
+        _d("ShotpointIncrementDistance"), _l("CableCount"), _d("CableLength"),
+        _s("Contractors_json"), _s("Operator_json"), _s("SpatialLocation_json"),
+        _s("GeoContexts_json"), _s("ExtensionProperties_json"),
+    ]
+)
+
+SEISMIC_PROCESSING_PROJECT_SCHEMA: StructType = StructType(
+    _envelope_fields()
+    + [
+        _s("ProjectID"), _s("ProjectName"), _s("ProjectBeginDate"), _s("ProjectEndDate"),
+        _s("Contractors_json"), _s("SpatialLocation_json"), _s("GeoContexts_json"),
+        _s("ExtensionProperties_json"),
+    ]
+)
+
+SEISMIC_TRACE_DATA_SCHEMA: StructType = StructType(
+    _envelope_fields()
+    + [
+        _s("Name"), _s("Description"), _s("BinGridID"), _s("ProcessingProjectID"),
+        _s("PrincipalAcquisitionProjectID"), _s("SeismicDomainTypeID"), _s("SeismicMigrationTypeID"),
+        _s("SeismicStackingTypeID"), _s("SeismicAttributeTypeID"), _s("SeismicTraceDataDimensionalityTypeID"),
+        _s("SeismicWaveTypeID"), _s("Phase"), _s("Polarity"),
+        _d("SampleInterval"), _l("SampleCount"), _d("StartTime"), _d("EndTime"),
+        _l("InlineMin"), _l("InlineMax"), _l("CrosslineMin"), _l("CrosslineMax"),
+        _s("Datasets_json"), _s("LiveTraceOutline_json"), _s("SpatialArea_json"),
+        _s("ProcessingParameters_json"), _s("TextualFileHeader"), _s("ExtensionProperties_json"),
+    ]
+)
+
+SEISMIC_BIN_GRID_SCHEMA: StructType = StructType(
+    _envelope_fields()
+    + [
+        _s("Name"), _s("BinGridTypeID"), _s("BinGridDefinitionMethodTypeID"), _d("CoveragePercent"),
+        _d("P6BinGridOriginI"), _d("P6BinGridOriginJ"), _d("P6BinGridOriginEasting"),
+        _d("P6BinGridOriginNorthing"), _d("P6ScaleFactorOfBinGrid"), _d("P6BinWidthOnIaxis"),
+        _d("P6BinWidthOnJaxis"), _d("P6MapGridBearingOfBinGridJaxis"), _d("P6BinNodeIncrementOnIaxis"),
+        _d("P6BinNodeIncrementOnJaxis"), _s("ABCDBinGridLocalCoordinates_json"),
+        _s("ABCDBinGridSpatialLocation_json"), _s("ExtensionProperties_json"),
+    ]
+)
+
+SEISMIC_FILE_DATASET_SCHEMA: StructType = StructType(
+    _envelope_fields()
+    + [
+        _s("Name"), _s("Description"), _s("FileCollectionPath"), _s("IndexFilePath"),
+        _s("SEGYRevision"), _s("EncodingFormatTypeID"), _l("FileCount"), _l("TotalSize"),
+        _s("FileSourceInfos_json"), _s("VectorHeaderMapping_json"), _s("ExtensionProperties_json"),
+    ]
+)
+
+
 TABLE_SCHEMAS: dict[str, StructType] = {
     "Wellbore": WELLBORE_SCHEMA,
     "Reservoir": RESERVOIR_SCHEMA,
     "Rock_and_Fluid": ROCK_AND_FLUID_SCHEMA,
+    "SeismicAcquisitionSurvey": SEISMIC_ACQUISITION_SURVEY_SCHEMA,
+    "SeismicProcessingProject": SEISMIC_PROCESSING_PROJECT_SCHEMA,
+    "SeismicTraceData": SEISMIC_TRACE_DATA_SCHEMA,
+    "SeismicBinGrid": SEISMIC_BIN_GRID_SCHEMA,
+    "SeismicFileDataset": SEISMIC_FILE_DATASET_SCHEMA,
 }
 
 
@@ -199,5 +294,15 @@ TABLE_METADATA: dict[str, dict] = {
         "primary_keys": ["id"],
         "cursor_field": "modifyTime",
         "ingestion_type": "cdc",
+    },
+    **{
+        t: {"primary_keys": ["id"], "cursor_field": "modifyTime", "ingestion_type": "cdc"}
+        for t in (
+            "SeismicAcquisitionSurvey",
+            "SeismicProcessingProject",
+            "SeismicTraceData",
+            "SeismicBinGrid",
+            "SeismicFileDataset",
+        )
     },
 }

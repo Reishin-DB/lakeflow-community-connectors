@@ -124,15 +124,22 @@ The connection can also be created using the standard Unity Catalog API.
 
 ## Supported Objects
 
-The ADME connector exposes **3 tables** in v1, all of which are OSDU master-data record kinds:
+The ADME connector exposes **8 tables**: 3 OSDU master-data kinds plus 5 seismic catalog kinds:
 
 | Connector table | OSDU kind (canonical) | OSDU kind (search wildcard) |
 |------|------|------|
 | `Wellbore` | `osdu:wks:master-data--Wellbore:1.0.0` | `osdu:wks:master-data--Wellbore:*` |
 | `Reservoir` | `osdu:wks:master-data--Reservoir:1.2.0` | `osdu:wks:master-data--Reservoir:*` |
 | `Rock_and_Fluid` | `osdu:wks:master-data--Sample:2.1.0` | `osdu:wks:master-data--Sample:*` |
+| `SeismicAcquisitionSurvey` | `osdu:wks:master-data--SeismicAcquisitionSurvey:1.2.0` | `osdu:wks:master-data--SeismicAcquisitionSurvey:*` |
+| `SeismicProcessingProject` | `osdu:wks:master-data--SeismicProcessingProject:1.2.0` | `osdu:wks:master-data--SeismicProcessingProject:*` |
+| `SeismicTraceData` | `osdu:wks:work-product-component--SeismicTraceData:1.3.0` | `osdu:wks:work-product-component--SeismicTraceData:*` |
+| `SeismicBinGrid` | `osdu:wks:work-product-component--SeismicBinGrid:1.1.0` | `osdu:wks:work-product-component--SeismicBinGrid:*` |
+| `SeismicFileDataset` | `osdu:wks:dataset--FileCollection.SEGY:1.1.0` | `osdu:wks:dataset--FileCollection.SEGY:*` |
 
-Table names are case-sensitive — use exactly `Wellbore`, `Reservoir`, `Rock_and_Fluid`.
+Table names are case-sensitive — use exactly `Wellbore`, `Reservoir`, `Rock_and_Fluid`, `SeismicAcquisitionSurvey`, `SeismicProcessingProject`, `SeismicTraceData`, `SeismicBinGrid`, `SeismicFileDataset`.
+
+> **Seismic tables carry catalog metadata only.** Trace data stays in ADME (File service / Seismic DMS). Seismic field names follow the OSDU data definitions and are **not yet validated against a live ADME Schema Service** (simulator-tested only); the full `data` payload is always kept in `data_json`. To read OpenVDS or ZGY dataset kinds, set `kind_query_seismicfiledataset`, e.g. `osdu:wks:dataset--FileCollection.Bluware.OpenVDS:*`.
 
 > **Note on `Rock_and_Fluid`:** OSDU does not define a kind named `master-data--RockAndFluid`. The OSDU Rock & Fluid Sample domain is served by the RAFS DDMS, where the primary master-data entity is `master-data--Sample` — the physical rock or fluid sample (core plug, sidewall core, downhole fluid sample, cutting, etc.) from which petrophysical and fluid properties are measured. The connector therefore maps `Rock_and_Fluid` to `osdu:wks:master-data--Sample`. See `adme_api_doc.md` for the full mapping rationale.
 

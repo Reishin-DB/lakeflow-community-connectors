@@ -1,0 +1,314 @@
+[
+  {
+    "acl": {
+      "viewers": [
+        "data.default.viewers@opendes.contoso.com"
+      ],
+      "owners": [
+        "data.default.owners@opendes.contoso.com"
+      ]
+    },
+    "legal": {
+      "legaltags": [
+        "opendes-public-usa-dataset"
+      ],
+      "otherRelevantDataCountries": [
+        "AU"
+      ],
+      "status": "compliant"
+    },
+    "version": 1710504000000,
+    "createTime": "2024-03-15T10:00:00.000Z",
+    "modifyTime": "2024-03-15T10:00:00.000Z",
+    "id": "opendes:work-product-component--SeismicBinGrid:ADELE-1:",
+    "kind": "osdu:wks:work-product-component--SeismicBinGrid:1.1.0",
+    "data": {
+      "Name": "Adele grid",
+      "P6BinGridOriginI": 4175,
+      "P6BinGridOriginJ": 5670,
+      "P6BinGridOriginEasting": 573238.9,
+      "P6BinGridOriginNorthing": 8477109.08,
+      "P6BinWidthOnIaxis": 18.75,
+      "P6BinWidthOnJaxis": 12.5,
+      "P6MapGridBearingOfBinGridJaxis": 270.0,
+      "P6BinNodeIncrementOnIaxis": 2,
+      "P6BinNodeIncrementOnJaxis": 1,
+      "CoveragePercent": 100,
+      "BinGridTypeID": "opendes:reference-data--SeismicBinGridType:Processing:",
+      "BinGridDefinitionMethodTypeID": "opendes:reference-data--BinGridDefinitionMethodType:P6:",
+      "P6ScaleFactorOfBinGrid": 1.0,
+      "ABCDBinGridLocalCoordinates": [
+        {
+          "Inline": 4175,
+          "Crossline": 5670
+        },
+        {
+          "Inline": 4775,
+          "Crossline": 8400
+        }
+      ],
+      "ABCDBinGridSpatialLocation": {
+        "Wgs84Coordinates": {
+          "type": "FeatureCollection",
+          "features": [
+            {
+              "type": "Feature",
+              "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                  [
+                    [
+                      123.36,
+                      -13.44
+                    ],
+                    [
+                      123.67,
+                      -13.44
+                    ],
+                    [
+                      123.67,
+                      -13.34
+                    ],
+                    [
+                      123.36,
+                      -13.34
+                    ],
+                    [
+                      123.36,
+                      -13.44
+                    ]
+                  ]
+                ]
+              },
+              "properties": {}
+            }
+          ]
+        }
+      },
+      "ExtensionProperties": {
+        "chevron_internal_survey_code": "AD3D-06"
+      }
+    },
+    "tags": {},
+    "createUser": "loader@contoso.com",
+    "modifyUser": "loader@contoso.com",
+    "meta": [
+      {
+        "kind": "Unit",
+        "name": "ms",
+        "persistableReference": "{\"symbol\":\"ms\"}",
+        "propertyNames": [
+          "SampleInterval"
+        ]
+      }
+    ]
+  },
+  {
+    "acl": {
+      "viewers": [
+        "data.default.viewers@opendes.contoso.com"
+      ],
+      "owners": [
+        "data.default.owners@opendes.contoso.com"
+      ]
+    },
+    "legal": {
+      "legaltags": [
+        "opendes-public-usa-dataset"
+      ],
+      "otherRelevantDataCountries": [
+        "AU"
+      ],
+      "status": "compliant"
+    },
+    "version": 1710504000001,
+    "createTime": "2024-03-16T08:30:00.000Z",
+    "modifyTime": "2024-03-16T08:30:00.000Z",
+    "id": "opendes:work-product-component--SeismicBinGrid:ADELE-2:",
+    "kind": "osdu:wks:work-product-component--SeismicBinGrid:1.1.0",
+    "data": {
+      "Name": "Adele grid",
+      "P6BinGridOriginI": 4175,
+      "P6BinGridOriginJ": 5670,
+      "P6BinGridOriginEasting": 573238.9,
+      "P6BinGridOriginNorthing": 8477109.08,
+      "P6BinWidthOnIaxis": 18.75,
+      "P6BinWidthOnJaxis": 12.5,
+      "P6MapGridBearingOfBinGridJaxis": 270.0,
+      "P6BinNodeIncrementOnIaxis": 2,
+      "P6BinNodeIncrementOnJaxis": 1,
+      "CoveragePercent": 100,
+      "BinGridTypeID": "opendes:reference-data--SeismicBinGridType:Processing:",
+      "BinGridDefinitionMethodTypeID": "opendes:reference-data--BinGridDefinitionMethodType:P6:",
+      "P6ScaleFactorOfBinGrid": 1.0,
+      "ABCDBinGridLocalCoordinates": [
+        {
+          "Inline": 4175,
+          "Crossline": 5670
+        },
+        {
+          "Inline": 4775,
+          "Crossline": 8400
+        }
+      ],
+      "ABCDBinGridSpatialLocation": {
+        "Wgs84Coordinates": {
+          "type": "FeatureCollection",
+          "features": [
+            {
+              "type": "Feature",
+              "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                  [
+                    [
+                      123.36,
+                      -13.44
+                    ],
+                    [
+                      123.67,
+                      -13.44
+                    ],
+                    [
+                      123.67,
+                      -13.34
+                    ],
+                    [
+                      123.36,
+                      -13.34
+                    ],
+                    [
+                      123.36,
+                      -13.44
+                    ]
+                  ]
+                ]
+              },
+              "properties": {}
+            }
+          ]
+        }
+      },
+      "ExtensionProperties": {
+        "chevron_internal_survey_code": "AD3D-06"
+      }
+    },
+    "tags": {},
+    "createUser": "loader@contoso.com",
+    "modifyUser": "loader@contoso.com",
+    "meta": [
+      {
+        "kind": "Unit",
+        "name": "ms",
+        "persistableReference": "{\"symbol\":\"ms\"}",
+        "propertyNames": [
+          "SampleInterval"
+        ]
+      }
+    ]
+  },
+  {
+    "acl": {
+      "viewers": [
+        "data.default.viewers@opendes.contoso.com"
+      ],
+      "owners": [
+        "data.default.owners@opendes.contoso.com"
+      ]
+    },
+    "legal": {
+      "legaltags": [
+        "opendes-public-usa-dataset"
+      ],
+      "otherRelevantDataCountries": [
+        "AU"
+      ],
+      "status": "compliant"
+    },
+    "version": 1710504000002,
+    "createTime": "2024-03-17T12:15:00.000Z",
+    "modifyTime": "2024-03-17T12:15:00.000Z",
+    "id": "opendes:work-product-component--SeismicBinGrid:ADELE-3:",
+    "kind": "osdu:wks:work-product-component--SeismicBinGrid:1.1.0",
+    "data": {
+      "Name": "Adele grid",
+      "P6BinGridOriginI": 4175,
+      "P6BinGridOriginJ": 5670,
+      "P6BinGridOriginEasting": 573238.9,
+      "P6BinGridOriginNorthing": 8477109.08,
+      "P6BinWidthOnIaxis": 18.75,
+      "P6BinWidthOnJaxis": 12.5,
+      "P6MapGridBearingOfBinGridJaxis": 270.0,
+      "P6BinNodeIncrementOnIaxis": 2,
+      "P6BinNodeIncrementOnJaxis": 1,
+      "CoveragePercent": 100,
+      "BinGridTypeID": "opendes:reference-data--SeismicBinGridType:Processing:",
+      "BinGridDefinitionMethodTypeID": "opendes:reference-data--BinGridDefinitionMethodType:P6:",
+      "P6ScaleFactorOfBinGrid": 1.0,
+      "ABCDBinGridLocalCoordinates": [
+        {
+          "Inline": 4175,
+          "Crossline": 5670
+        },
+        {
+          "Inline": 4775,
+          "Crossline": 8400
+        }
+      ],
+      "ABCDBinGridSpatialLocation": {
+        "Wgs84Coordinates": {
+          "type": "FeatureCollection",
+          "features": [
+            {
+              "type": "Feature",
+              "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                  [
+                    [
+                      123.36,
+                      -13.44
+                    ],
+                    [
+                      123.67,
+                      -13.44
+                    ],
+                    [
+                      123.67,
+                      -13.34
+                    ],
+                    [
+                      123.36,
+                      -13.34
+                    ],
+                    [
+                      123.36,
+                      -13.44
+                    ]
+                  ]
+                ]
+              },
+              "properties": {}
+            }
+          ]
+        }
+      },
+      "ExtensionProperties": {
+        "chevron_internal_survey_code": "AD3D-06"
+      }
+    },
+    "tags": {},
+    "createUser": "loader@contoso.com",
+    "modifyUser": "loader@contoso.com",
+    "meta": [
+      {
+        "kind": "Unit",
+        "name": "ms",
+        "persistableReference": "{\"symbol\":\"ms\"}",
+        "propertyNames": [
+          "SampleInterval"
+        ]
+      }
+    ]
+  }
+]

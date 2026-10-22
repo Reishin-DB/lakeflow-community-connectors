@@ -600,12 +600,23 @@ def register_lakeflow_source(spark):
         "Wellbore": "osdu:wks:master-data--Wellbore:*",
         "Reservoir": "osdu:wks:master-data--Reservoir:*",
         "Rock_and_Fluid": "osdu:wks:master-data--Sample:*",
+        # Seismic catalog (metadata records; trace data itself stays in ADME / SDMS)
+        "SeismicAcquisitionSurvey": "osdu:wks:master-data--SeismicAcquisitionSurvey:*",
+        "SeismicProcessingProject": "osdu:wks:master-data--SeismicProcessingProject:*",
+        "SeismicTraceData": "osdu:wks:work-product-component--SeismicTraceData:*",
+        "SeismicBinGrid": "osdu:wks:work-product-component--SeismicBinGrid:*",
+        "SeismicFileDataset": "osdu:wks:dataset--FileCollection.SEGY:*",
     }
 
     TABLE_TO_KIND_CANONICAL: dict[str, str] = {
         "Wellbore": "osdu:wks:master-data--Wellbore:1.0.0",
         "Reservoir": "osdu:wks:master-data--Reservoir:1.2.0",
         "Rock_and_Fluid": "osdu:wks:master-data--Sample:2.1.0",
+        "SeismicAcquisitionSurvey": "osdu:wks:master-data--SeismicAcquisitionSurvey:1.2.0",
+        "SeismicProcessingProject": "osdu:wks:master-data--SeismicProcessingProject:1.2.0",
+        "SeismicTraceData": "osdu:wks:work-product-component--SeismicTraceData:1.3.0",
+        "SeismicBinGrid": "osdu:wks:work-product-component--SeismicBinGrid:1.1.0",
+        "SeismicFileDataset": "osdu:wks:dataset--FileCollection.SEGY:1.1.0",
     }
 
     SUPPORTED_TABLES: list[str] = list(TABLE_TO_KIND_QUERY.keys())
@@ -731,10 +742,94 @@ def register_lakeflow_source(spark):
     )
 
 
+    # ---------------------------------------------------------------------------
+    # Seismic catalog kinds
+    # ---------------------------------------------------------------------------
+    # Field names follow the OSDU data definitions for the seismic master-data,
+    # work-product-component and dataset kinds. Confidence is medium (same as
+    # Reservoir): verify against the Schema Service of the target partition.
+    # Every record also keeps the full ``data_json``, so nothing is lost if a
+    # field moves between schema versions; to read OpenVDS / ZGY dataset kinds,
+    # point SeismicFileDataset at them with ``kind_query_seismicfiledataset``.
+
+
+    def _s(name: str) -> StructField:
+        return StructField(name, StringType(), True)
+
+
+    def _d(name: str) -> StructField:
+        return StructField(name, DoubleType(), True)
+
+
+    def _l(name: str) -> StructField:
+        return StructField(name, LongType(), True)
+
+
+    SEISMIC_ACQUISITION_SURVEY_SCHEMA: StructType = StructType(
+        _envelope_fields()
+        + [
+            _s("ProjectID"), _s("ProjectName"), _s("ProjectBeginDate"), _s("ProjectEndDate"),
+            _s("SeismicGeometryTypeID"), _s("OperatingEnvironmentID"), _s("EnergySourceTypeID"),
+            _d("ShotpointIncrementDistance"), _l("CableCount"), _d("CableLength"),
+            _s("Contractors_json"), _s("Operator_json"), _s("SpatialLocation_json"),
+            _s("GeoContexts_json"), _s("ExtensionProperties_json"),
+        ]
+    )
+
+    SEISMIC_PROCESSING_PROJECT_SCHEMA: StructType = StructType(
+        _envelope_fields()
+        + [
+            _s("ProjectID"), _s("ProjectName"), _s("ProjectBeginDate"), _s("ProjectEndDate"),
+            _s("Contractors_json"), _s("SpatialLocation_json"), _s("GeoContexts_json"),
+            _s("ExtensionProperties_json"),
+        ]
+    )
+
+    SEISMIC_TRACE_DATA_SCHEMA: StructType = StructType(
+        _envelope_fields()
+        + [
+            _s("Name"), _s("Description"), _s("BinGridID"), _s("ProcessingProjectID"),
+            _s("PrincipalAcquisitionProjectID"), _s("SeismicDomainTypeID"), _s("SeismicMigrationTypeID"),
+            _s("SeismicStackingTypeID"), _s("SeismicAttributeTypeID"), _s("SeismicTraceDataDimensionalityTypeID"),
+            _s("SeismicWaveTypeID"), _s("Phase"), _s("Polarity"),
+            _d("SampleInterval"), _l("SampleCount"), _d("StartTime"), _d("EndTime"),
+            _l("InlineMin"), _l("InlineMax"), _l("CrosslineMin"), _l("CrosslineMax"),
+            _s("Datasets_json"), _s("LiveTraceOutline_json"), _s("SpatialArea_json"),
+            _s("ProcessingParameters_json"), _s("TextualFileHeader"), _s("ExtensionProperties_json"),
+        ]
+    )
+
+    SEISMIC_BIN_GRID_SCHEMA: StructType = StructType(
+        _envelope_fields()
+        + [
+            _s("Name"), _s("BinGridTypeID"), _s("BinGridDefinitionMethodTypeID"), _d("CoveragePercent"),
+            _d("P6BinGridOriginI"), _d("P6BinGridOriginJ"), _d("P6BinGridOriginEasting"),
+            _d("P6BinGridOriginNorthing"), _d("P6ScaleFactorOfBinGrid"), _d("P6BinWidthOnIaxis"),
+            _d("P6BinWidthOnJaxis"), _d("P6MapGridBearingOfBinGridJaxis"), _d("P6BinNodeIncrementOnIaxis"),
+            _d("P6BinNodeIncrementOnJaxis"), _s("ABCDBinGridLocalCoordinates_json"),
+            _s("ABCDBinGridSpatialLocation_json"), _s("ExtensionProperties_json"),
+        ]
+    )
+
+    SEISMIC_FILE_DATASET_SCHEMA: StructType = StructType(
+        _envelope_fields()
+        + [
+            _s("Name"), _s("Description"), _s("FileCollectionPath"), _s("IndexFilePath"),
+            _s("SEGYRevision"), _s("EncodingFormatTypeID"), _l("FileCount"), _l("TotalSize"),
+            _s("FileSourceInfos_json"), _s("VectorHeaderMapping_json"), _s("ExtensionProperties_json"),
+        ]
+    )
+
+
     TABLE_SCHEMAS: dict[str, StructType] = {
         "Wellbore": WELLBORE_SCHEMA,
         "Reservoir": RESERVOIR_SCHEMA,
         "Rock_and_Fluid": ROCK_AND_FLUID_SCHEMA,
+        "SeismicAcquisitionSurvey": SEISMIC_ACQUISITION_SURVEY_SCHEMA,
+        "SeismicProcessingProject": SEISMIC_PROCESSING_PROJECT_SCHEMA,
+        "SeismicTraceData": SEISMIC_TRACE_DATA_SCHEMA,
+        "SeismicBinGrid": SEISMIC_BIN_GRID_SCHEMA,
+        "SeismicFileDataset": SEISMIC_FILE_DATASET_SCHEMA,
     }
 
 
@@ -759,6 +854,16 @@ def register_lakeflow_source(spark):
             "primary_keys": ["id"],
             "cursor_field": "modifyTime",
             "ingestion_type": "cdc",
+        },
+        **{
+            t: {"primary_keys": ["id"], "cursor_field": "modifyTime", "ingestion_type": "cdc"}
+            for t in (
+                "SeismicAcquisitionSurvey",
+                "SeismicProcessingProject",
+                "SeismicTraceData",
+                "SeismicBinGrid",
+                "SeismicFileDataset",
+            )
         },
     }
 
@@ -1463,6 +1568,16 @@ def register_lakeflow_source(spark):
             base.update(_flatten_reservoir(data))
         elif "master-data--Sample" in kind:
             base.update(_flatten_sample(data))
+        elif "master-data--SeismicAcquisitionSurvey" in kind:
+            base.update(_flatten_seismic_survey(data))
+        elif "master-data--SeismicProcessingProject" in kind:
+            base.update(_flatten_seismic_processing(data))
+        elif "work-product-component--SeismicTraceData" in kind:
+            base.update(_flatten_seismic_trace_data(data))
+        elif "work-product-component--SeismicBinGrid" in kind:
+            base.update(_flatten_seismic_bin_grid(data))
+        elif "dataset--FileCollection" in kind or "dataset--File." in kind:
+            base.update(_flatten_seismic_file_dataset(data))
 
         return base
 
@@ -1539,6 +1654,118 @@ def register_lakeflow_source(spark):
             "FormationPressure": _coerce_double(formation_cond.get("Pressure")),
             "FormationTemperature": _coerce_double(formation_cond.get("Temperature")),
             "SampleAcquisition_json": _json_or_none(sa),
+            "ExtensionProperties_json": _json_or_none(data.get("ExtensionProperties")),
+        }
+
+
+    def _first(data: dict[str, Any], *names: str) -> Any:
+        """First non-null value among alternative field names (schema-version drift)."""
+        for n in names:
+            v = data.get(n)
+            if v is not None:
+                return v
+        return None
+
+
+    def _flatten_seismic_survey(data: dict[str, Any]) -> dict[str, Any]:
+        return {
+            "ProjectID": data.get("ProjectID"),
+            "ProjectName": data.get("ProjectName"),
+            "ProjectBeginDate": _coerce_str(data.get("ProjectBeginDate")),
+            "ProjectEndDate": _coerce_str(data.get("ProjectEndDate")),
+            "SeismicGeometryTypeID": data.get("SeismicGeometryTypeID"),
+            "OperatingEnvironmentID": data.get("OperatingEnvironmentID"),
+            "EnergySourceTypeID": data.get("EnergySourceTypeID"),
+            "ShotpointIncrementDistance": _coerce_double(data.get("ShotpointIncrementDistance")),
+            "CableCount": _coerce_long(data.get("CableCount")),
+            "CableLength": _coerce_double(data.get("CableLength")),
+            "Contractors_json": _json_or_none(data.get("Contractors")),
+            "Operator_json": _json_or_none(_first(data, "Operator", "OperatorID")),
+            "SpatialLocation_json": _json_or_none(data.get("SpatialLocation")),
+            "GeoContexts_json": _json_or_none(data.get("GeoContexts")),
+            "ExtensionProperties_json": _json_or_none(data.get("ExtensionProperties")),
+        }
+
+
+    def _flatten_seismic_processing(data: dict[str, Any]) -> dict[str, Any]:
+        return {
+            "ProjectID": data.get("ProjectID"),
+            "ProjectName": data.get("ProjectName"),
+            "ProjectBeginDate": _coerce_str(data.get("ProjectBeginDate")),
+            "ProjectEndDate": _coerce_str(data.get("ProjectEndDate")),
+            "Contractors_json": _json_or_none(data.get("Contractors")),
+            "SpatialLocation_json": _json_or_none(data.get("SpatialLocation")),
+            "GeoContexts_json": _json_or_none(data.get("GeoContexts")),
+            "ExtensionProperties_json": _json_or_none(data.get("ExtensionProperties")),
+        }
+
+
+    def _flatten_seismic_trace_data(data: dict[str, Any]) -> dict[str, Any]:
+        return {
+            "Name": data.get("Name"),
+            "Description": data.get("Description"),
+            "BinGridID": data.get("BinGridID"),
+            "ProcessingProjectID": data.get("ProcessingProjectID"),
+            "PrincipalAcquisitionProjectID": data.get("PrincipalAcquisitionProjectID"),
+            "SeismicDomainTypeID": data.get("SeismicDomainTypeID"),
+            "SeismicMigrationTypeID": data.get("SeismicMigrationTypeID"),
+            "SeismicStackingTypeID": data.get("SeismicStackingTypeID"),
+            "SeismicAttributeTypeID": data.get("SeismicAttributeTypeID"),
+            "SeismicTraceDataDimensionalityTypeID": data.get("SeismicTraceDataDimensionalityTypeID"),
+            "SeismicWaveTypeID": data.get("SeismicWaveTypeID"),
+            "Phase": _coerce_str(data.get("Phase")),
+            "Polarity": _coerce_str(data.get("Polarity")),
+            "SampleInterval": _coerce_double(data.get("SampleInterval")),
+            "SampleCount": _coerce_long(data.get("SampleCount")),
+            "StartTime": _coerce_double(data.get("StartTime")),
+            "EndTime": _coerce_double(data.get("EndTime")),
+            "InlineMin": _coerce_long(_first(data, "InlineMin", "FirstInline")),
+            "InlineMax": _coerce_long(_first(data, "InlineMax", "LastInline")),
+            "CrosslineMin": _coerce_long(_first(data, "CrosslineMin", "FirstCrossline")),
+            "CrosslineMax": _coerce_long(_first(data, "CrosslineMax", "LastCrossline")),
+            "Datasets_json": _json_or_none(data.get("Datasets")),
+            "LiveTraceOutline_json": _json_or_none(data.get("LiveTraceOutline")),
+            "SpatialArea_json": _json_or_none(_first(data, "SpatialArea", "SpatialLocation")),
+            "ProcessingParameters_json": _json_or_none(data.get("ProcessingParameters")),
+            "TextualFileHeader": _coerce_str(_first(data, "TextualFileHeader", "TextualHeader")),
+            "ExtensionProperties_json": _json_or_none(data.get("ExtensionProperties")),
+        }
+
+
+    def _flatten_seismic_bin_grid(data: dict[str, Any]) -> dict[str, Any]:
+        p6 = [
+            "P6BinGridOriginI", "P6BinGridOriginJ", "P6BinGridOriginEasting", "P6BinGridOriginNorthing",
+            "P6ScaleFactorOfBinGrid", "P6BinWidthOnIaxis", "P6BinWidthOnJaxis",
+            "P6MapGridBearingOfBinGridJaxis", "P6BinNodeIncrementOnIaxis", "P6BinNodeIncrementOnJaxis",
+        ]
+        out = {
+            "Name": data.get("Name"),
+            "BinGridTypeID": data.get("BinGridTypeID"),
+            "BinGridDefinitionMethodTypeID": data.get("BinGridDefinitionMethodTypeID"),
+            "CoveragePercent": _coerce_double(data.get("CoveragePercent")),
+            "ABCDBinGridLocalCoordinates_json": _json_or_none(data.get("ABCDBinGridLocalCoordinates")),
+            "ABCDBinGridSpatialLocation_json": _json_or_none(data.get("ABCDBinGridSpatialLocation")),
+            "ExtensionProperties_json": _json_or_none(data.get("ExtensionProperties")),
+        }
+        out.update({k: _coerce_double(data.get(k)) for k in p6})
+        return out
+
+
+    def _flatten_seismic_file_dataset(data: dict[str, Any]) -> dict[str, Any]:
+        props = data.get("DatasetProperties") if isinstance(data.get("DatasetProperties"), dict) else {}
+        infos = props.get("FileSourceInfos") if isinstance(props.get("FileSourceInfos"), list) else []
+        sizes = [_coerce_long((i or {}).get("FileSize")) for i in infos if isinstance(i, dict)]
+        return {
+            "Name": data.get("Name"),
+            "Description": data.get("Description"),
+            "FileCollectionPath": props.get("FileCollectionPath"),
+            "IndexFilePath": props.get("IndexFilePath"),
+            "SEGYRevision": _coerce_str(data.get("SEGYRevision")),
+            "EncodingFormatTypeID": data.get("EncodingFormatTypeID"),
+            "FileCount": len(infos) if infos else None,
+            "TotalSize": sum(s for s in sizes if s is not None) if any(s is not None for s in sizes) else None,
+            "FileSourceInfos_json": _json_or_none(infos or None),
+            "VectorHeaderMapping_json": _json_or_none(data.get("VectorHeaderMapping")),
             "ExtensionProperties_json": _json_or_none(data.get("ExtensionProperties")),
         }
 

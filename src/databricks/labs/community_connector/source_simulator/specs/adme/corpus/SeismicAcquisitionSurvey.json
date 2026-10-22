@@ -1,0 +1,215 @@
+[
+  {
+    "acl": {
+      "viewers": [
+        "data.default.viewers@opendes.contoso.com"
+      ],
+      "owners": [
+        "data.default.owners@opendes.contoso.com"
+      ]
+    },
+    "legal": {
+      "legaltags": [
+        "opendes-public-usa-dataset"
+      ],
+      "otherRelevantDataCountries": [
+        "AU"
+      ],
+      "status": "compliant"
+    },
+    "version": 1710504000000,
+    "createTime": "2024-03-15T10:00:00.000Z",
+    "modifyTime": "2024-03-15T10:00:00.000Z",
+    "id": "opendes:master-data--SeismicAcquisitionSurvey:ADELE-3D-1:",
+    "kind": "osdu:wks:master-data--SeismicAcquisitionSurvey:1.2.0",
+    "data": {
+      "ProjectID": "ADELE-3D",
+      "ProjectName": "Adele 3D",
+      "ProjectBeginDate": "2006-03-01",
+      "ProjectEndDate": "2006-05-20",
+      "SeismicGeometryTypeID": "opendes:reference-data--SeismicGeometryType:3D:",
+      "OperatingEnvironmentID": "opendes:reference-data--OperatingEnvironment:Marine:",
+      "ShotpointIncrementDistance": 25,
+      "CableCount": "8",
+      "CableLength": 6000.0,
+      "Contractors": [
+        {
+          "ContractorOrganisationID": "x"
+        }
+      ],
+      "SpatialLocation": {
+        "Wgs84Coordinates": {
+          "type": "FeatureCollection",
+          "features": []
+        }
+      },
+      "EnergySourceTypeID": "opendes:reference-data--SeismicEnergySourceType:Airgun:",
+      "Operator": {
+        "OrganisationID": "opendes:master-data--Organisation:GA:"
+      },
+      "GeoContexts": [
+        {
+          "GeoPoliticalEntityID": "opendes:master-data--GeoPoliticalEntity:Australia:"
+        }
+      ],
+      "ExtensionProperties": {
+        "chevron_internal_survey_code": "AD3D-06"
+      }
+    },
+    "tags": {},
+    "createUser": "loader@contoso.com",
+    "modifyUser": "loader@contoso.com",
+    "meta": [
+      {
+        "kind": "Unit",
+        "name": "ms",
+        "persistableReference": "{\"symbol\":\"ms\"}",
+        "propertyNames": [
+          "SampleInterval"
+        ]
+      }
+    ]
+  },
+  {
+    "acl": {
+      "viewers": [
+        "data.default.viewers@opendes.contoso.com"
+      ],
+      "owners": [
+        "data.default.owners@opendes.contoso.com"
+      ]
+    },
+    "legal": {
+      "legaltags": [
+        "opendes-public-usa-dataset"
+      ],
+      "otherRelevantDataCountries": [
+        "AU"
+      ],
+      "status": "compliant"
+    },
+    "version": 1710504000001,
+    "createTime": "2024-03-16T08:30:00.000Z",
+    "modifyTime": "2024-03-16T08:30:00.000Z",
+    "id": "opendes:master-data--SeismicAcquisitionSurvey:ADELE-3D-2:",
+    "kind": "osdu:wks:master-data--SeismicAcquisitionSurvey:1.2.0",
+    "data": {
+      "ProjectID": "ADELE-3D",
+      "ProjectName": "Adele 3D",
+      "ProjectBeginDate": "2006-03-01",
+      "ProjectEndDate": "2006-05-20",
+      "SeismicGeometryTypeID": "opendes:reference-data--SeismicGeometryType:3D:",
+      "OperatingEnvironmentID": "opendes:reference-data--OperatingEnvironment:Marine:",
+      "ShotpointIncrementDistance": 25,
+      "CableCount": "8",
+      "CableLength": 6000.0,
+      "Contractors": [
+        {
+          "ContractorOrganisationID": "x"
+        }
+      ],
+      "SpatialLocation": {
+        "Wgs84Coordinates": {
+          "type": "FeatureCollection",
+          "features": []
+        }
+      },
+      "EnergySourceTypeID": "opendes:reference-data--SeismicEnergySourceType:Airgun:",
+      "Operator": {
+        "OrganisationID": "opendes:master-data--Organisation:GA:"
+      },
+      "GeoContexts": [
+        {
+          "GeoPoliticalEntityID": "opendes:master-data--GeoPoliticalEntity:Australia:"
+        }
+      ],
+      "ExtensionProperties": {
+        "chevron_internal_survey_code": "AD3D-06"
+      }
+    },
+    "tags": {},
+    "createUser": "loader@contoso.com",
+    "modifyUser": "loader@contoso.com",
+    "meta": [
+      {
+        "kind": "Unit",
+        "name": "ms",
+        "persistableReference": "{\"symbol\":\"ms\"}",
+        "propertyNames": [
+          "SampleInterval"
+        ]
+      }
+    ]
+  },
+  {
+    "acl": {
+      "viewers": [
+        "data.default.viewers@opendes.contoso.com"
+      ],
+      "owners": [
+        "data.default.owners@opendes.contoso.com"
+      ]
+    },
+    "legal": {
+      "legaltags": [
+        "opendes-public-usa-dataset"
+      ],
+      "otherRelevantDataCountries": [
+        "AU"
+      ],
+      "status": "compliant"
+    },
+    "version": 1710504000002,
+    "createTime": "2024-03-17T12:15:00.000Z",
+    "modifyTime": "2024-03-17T12:15:00.000Z",
+    "id": "opendes:master-data--SeismicAcquisitionSurvey:ADELE-3D-3:",
+    "kind": "osdu:wks:master-data--SeismicAcquisitionSurvey:1.2.0",
+    "data": {
+      "ProjectID": "ADELE-3D",
+      "ProjectName": "Adele 3D",
+      "ProjectBeginDate": "2006-03-01",
+      "ProjectEndDate": "2006-05-20",
+      "SeismicGeometryTypeID": "opendes:reference-data--SeismicGeometryType:3D:",
+      "OperatingEnvironmentID": "opendes:reference-data--OperatingEnvironment:Marine:",
+      "ShotpointIncrementDistance": 25,
+      "CableCount": "8",
+      "CableLength": 6000.0,
+      "Contractors": [
+        {
+          "ContractorOrganisationID": "x"
+        }
+      ],
+      "SpatialLocation": {
+        "Wgs84Coordinates": {
+          "type": "FeatureCollection",
+          "features": []
+        }
+      },
+      "EnergySourceTypeID": "opendes:reference-data--SeismicEnergySourceType:Airgun:",
+      "Operator": {
+        "OrganisationID": "opendes:master-data--Organisation:GA:"
+      },
+      "GeoContexts": [
+        {
+          "GeoPoliticalEntityID": "opendes:master-data--GeoPoliticalEntity:Australia:"
+        }
+      ],
+      "ExtensionProperties": {
+        "chevron_internal_survey_code": "AD3D-06"
+      }
+    },
+    "tags": {},
+    "createUser": "loader@contoso.com",
+    "modifyUser": "loader@contoso.com",
+    "meta": [
+      {
+        "kind": "Unit",
+        "name": "ms",
+        "persistableReference": "{\"symbol\":\"ms\"}",
+        "propertyNames": [
+          "SampleInterval"
+        ]
+      }
+    ]
+  }
+]

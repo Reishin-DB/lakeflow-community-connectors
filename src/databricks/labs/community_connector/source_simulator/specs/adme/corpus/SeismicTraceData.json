@@ -1,0 +1,449 @@
+[
+  {
+    "acl": {
+      "viewers": [
+        "data.default.viewers@opendes.contoso.com"
+      ],
+      "owners": [
+        "data.default.owners@opendes.contoso.com"
+      ]
+    },
+    "legal": {
+      "legaltags": [
+        "opendes-public-usa-dataset"
+      ],
+      "otherRelevantDataCountries": [
+        "AU"
+      ],
+      "status": "compliant"
+    },
+    "version": 1710504000000,
+    "createTime": "2024-03-15T10:00:00.000Z",
+    "modifyTime": "2024-03-15T10:00:00.000Z",
+    "id": "opendes:work-product-component--SeismicTraceData:ADELE-PSTM-1:",
+    "kind": "osdu:wks:work-product-component--SeismicTraceData:1.3.0",
+    "data": {
+      "Name": "adele PSTM_FULL_OFFSET",
+      "BinGridID": "opendes:work-product-component--SeismicBinGrid:ADELE:",
+      "SeismicDomainTypeID": "opendes:reference-data--SeismicDomainType:Time:",
+      "SeismicMigrationTypeID": "opendes:reference-data--SeismicMigrationType:PSTM:",
+      "SampleInterval": 4.0,
+      "SampleCount": 1001,
+      "StartTime": 1500,
+      "EndTime": 5500,
+      "FirstInline": 4175,
+      "LastInline": 4775,
+      "CrosslineMin": 5670,
+      "CrosslineMax": 8400,
+      "Datasets": [
+        "opendes:dataset--FileCollection.SEGY:ADELE-PSTM:"
+      ],
+      "TextualFileHeader": "C 1 SEGY OUTPUT",
+      "Description": "Full-offset PSTM stack",
+      "ProcessingProjectID": "opendes:master-data--SeismicProcessingProject:ADELE-PSTM-2020:",
+      "PrincipalAcquisitionProjectID": "opendes:master-data--SeismicAcquisitionSurvey:ADELE-3D:",
+      "SeismicStackingTypeID": "opendes:reference-data--SeismicStackingType:Full:",
+      "SeismicAttributeTypeID": "opendes:reference-data--SeismicAttributeType:Amplitude:",
+      "SeismicTraceDataDimensionalityTypeID": "opendes:reference-data--SeismicTraceDataDimensionalityType:3D:",
+      "SeismicWaveTypeID": "opendes:reference-data--SeismicWaveType:P:",
+      "Phase": "0",
+      "Polarity": "Normal",
+      "LiveTraceOutline": {
+        "Wgs84Coordinates": {
+          "type": "FeatureCollection",
+          "features": [
+            {
+              "type": "Feature",
+              "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                  [
+                    [
+                      123.36,
+                      -13.44
+                    ],
+                    [
+                      123.67,
+                      -13.44
+                    ],
+                    [
+                      123.67,
+                      -13.34
+                    ],
+                    [
+                      123.36,
+                      -13.34
+                    ],
+                    [
+                      123.36,
+                      -13.44
+                    ]
+                  ]
+                ]
+              },
+              "properties": {}
+            }
+          ]
+        }
+      },
+      "SpatialArea": {
+        "Wgs84Coordinates": {
+          "type": "FeatureCollection",
+          "features": [
+            {
+              "type": "Feature",
+              "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                  [
+                    [
+                      123.36,
+                      -13.44
+                    ],
+                    [
+                      123.67,
+                      -13.44
+                    ],
+                    [
+                      123.67,
+                      -13.34
+                    ],
+                    [
+                      123.36,
+                      -13.34
+                    ],
+                    [
+                      123.36,
+                      -13.44
+                    ]
+                  ]
+                ]
+              },
+              "properties": {}
+            }
+          ]
+        }
+      },
+      "ProcessingParameters": [
+        {
+          "ProcessingParameterTypeID": "opendes:reference-data--ProcessingParameterType:Migration:",
+          "ProcessingParameterValue": "Kirchhoff PSTM"
+        }
+      ],
+      "ExtensionProperties": {
+        "chevron_internal_survey_code": "AD3D-06"
+      }
+    },
+    "tags": {},
+    "createUser": "loader@contoso.com",
+    "modifyUser": "loader@contoso.com",
+    "meta": [
+      {
+        "kind": "Unit",
+        "name": "ms",
+        "persistableReference": "{\"symbol\":\"ms\"}",
+        "propertyNames": [
+          "SampleInterval"
+        ]
+      }
+    ]
+  },
+  {
+    "acl": {
+      "viewers": [
+        "data.default.viewers@opendes.contoso.com"
+      ],
+      "owners": [
+        "data.default.owners@opendes.contoso.com"
+      ]
+    },
+    "legal": {
+      "legaltags": [
+        "opendes-public-usa-dataset"
+      ],
+      "otherRelevantDataCountries": [
+        "AU"
+      ],
+      "status": "compliant"
+    },
+    "version": 1710504000001,
+    "createTime": "2024-03-16T08:30:00.000Z",
+    "modifyTime": "2024-03-16T08:30:00.000Z",
+    "id": "opendes:work-product-component--SeismicTraceData:ADELE-PSTM-2:",
+    "kind": "osdu:wks:work-product-component--SeismicTraceData:1.3.0",
+    "data": {
+      "Name": "adele PSTM_FULL_OFFSET",
+      "BinGridID": "opendes:work-product-component--SeismicBinGrid:ADELE:",
+      "SeismicDomainTypeID": "opendes:reference-data--SeismicDomainType:Time:",
+      "SeismicMigrationTypeID": "opendes:reference-data--SeismicMigrationType:PSTM:",
+      "SampleInterval": 4.0,
+      "SampleCount": 1001,
+      "StartTime": 1500,
+      "EndTime": 5500,
+      "FirstInline": 4175,
+      "LastInline": 4775,
+      "CrosslineMin": 5670,
+      "CrosslineMax": 8400,
+      "Datasets": [
+        "opendes:dataset--FileCollection.SEGY:ADELE-PSTM:"
+      ],
+      "TextualFileHeader": "C 1 SEGY OUTPUT",
+      "Description": "Full-offset PSTM stack",
+      "ProcessingProjectID": "opendes:master-data--SeismicProcessingProject:ADELE-PSTM-2020:",
+      "PrincipalAcquisitionProjectID": "opendes:master-data--SeismicAcquisitionSurvey:ADELE-3D:",
+      "SeismicStackingTypeID": "opendes:reference-data--SeismicStackingType:Full:",
+      "SeismicAttributeTypeID": "opendes:reference-data--SeismicAttributeType:Amplitude:",
+      "SeismicTraceDataDimensionalityTypeID": "opendes:reference-data--SeismicTraceDataDimensionalityType:3D:",
+      "SeismicWaveTypeID": "opendes:reference-data--SeismicWaveType:P:",
+      "Phase": "0",
+      "Polarity": "Normal",
+      "LiveTraceOutline": {
+        "Wgs84Coordinates": {
+          "type": "FeatureCollection",
+          "features": [
+            {
+              "type": "Feature",
+              "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                  [
+                    [
+                      123.36,
+                      -13.44
+                    ],
+                    [
+                      123.67,
+                      -13.44
+                    ],
+                    [
+                      123.67,
+                      -13.34
+                    ],
+                    [
+                      123.36,
+                      -13.34
+                    ],
+                    [
+                      123.36,
+                      -13.44
+                    ]
+                  ]
+                ]
+              },
+              "properties": {}
+            }
+          ]
+        }
+      },
+      "SpatialArea": {
+        "Wgs84Coordinates": {
+          "type": "FeatureCollection",
+          "features": [
+            {
+              "type": "Feature",
+              "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                  [
+                    [
+                      123.36,
+                      -13.44
+                    ],
+                    [
+                      123.67,
+                      -13.44
+                    ],
+                    [
+                      123.67,
+                      -13.34
+                    ],
+                    [
+                      123.36,
+                      -13.34
+                    ],
+                    [
+                      123.36,
+                      -13.44
+                    ]
+                  ]
+                ]
+              },
+              "properties": {}
+            }
+          ]
+        }
+      },
+      "ProcessingParameters": [
+        {
+          "ProcessingParameterTypeID": "opendes:reference-data--ProcessingParameterType:Migration:",
+          "ProcessingParameterValue": "Kirchhoff PSTM"
+        }
+      ],
+      "ExtensionProperties": {
+        "chevron_internal_survey_code": "AD3D-06"
+      }
+    },
+    "tags": {},
+    "createUser": "loader@contoso.com",
+    "modifyUser": "loader@contoso.com",
+    "meta": [
+      {
+        "kind": "Unit",
+        "name": "ms",
+        "persistableReference": "{\"symbol\":\"ms\"}",
+        "propertyNames": [
+          "SampleInterval"
+        ]
+      }
+    ]
+  },
+  {
+    "acl": {
+      "viewers": [
+        "data.default.viewers@opendes.contoso.com"
+      ],
+      "owners": [
+        "data.default.owners@opendes.contoso.com"
+      ]
+    },
+    "legal": {
+      "legaltags": [
+        "opendes-public-usa-dataset"
+      ],
+      "otherRelevantDataCountries": [
+        "AU"
+      ],
+      "status": "compliant"
+    },
+    "version": 1710504000002,
+    "createTime": "2024-03-17T12:15:00.000Z",
+    "modifyTime": "2024-03-17T12:15:00.000Z",
+    "id": "opendes:work-product-component--SeismicTraceData:ADELE-PSTM-3:",
+    "kind": "osdu:wks:work-product-component--SeismicTraceData:1.3.0",
+    "data": {
+      "Name": "adele PSTM_FULL_OFFSET",
+      "BinGridID": "opendes:work-product-component--SeismicBinGrid:ADELE:",
+      "SeismicDomainTypeID": "opendes:reference-data--SeismicDomainType:Time:",
+      "SeismicMigrationTypeID": "opendes:reference-data--SeismicMigrationType:PSTM:",
+      "SampleInterval": 4.0,
+      "SampleCount": 1001,
+      "StartTime": 1500,
+      "EndTime": 5500,
+      "FirstInline": 4175,
+      "LastInline": 4775,
+      "CrosslineMin": 5670,
+      "CrosslineMax": 8400,
+      "Datasets": [
+        "opendes:dataset--FileCollection.SEGY:ADELE-PSTM:"
+      ],
+      "TextualFileHeader": "C 1 SEGY OUTPUT",
+      "Description": "Full-offset PSTM stack",
+      "ProcessingProjectID": "opendes:master-data--SeismicProcessingProject:ADELE-PSTM-2020:",
+      "PrincipalAcquisitionProjectID": "opendes:master-data--SeismicAcquisitionSurvey:ADELE-3D:",
+      "SeismicStackingTypeID": "opendes:reference-data--SeismicStackingType:Full:",
+      "SeismicAttributeTypeID": "opendes:reference-data--SeismicAttributeType:Amplitude:",
+      "SeismicTraceDataDimensionalityTypeID": "opendes:reference-data--SeismicTraceDataDimensionalityType:3D:",
+      "SeismicWaveTypeID": "opendes:reference-data--SeismicWaveType:P:",
+      "Phase": "0",
+      "Polarity": "Normal",
+      "LiveTraceOutline": {
+        "Wgs84Coordinates": {
+          "type": "FeatureCollection",
+          "features": [
+            {
+              "type": "Feature",
+              "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                  [
+                    [
+                      123.36,
+                      -13.44
+                    ],
+                    [
+                      123.67,
+                      -13.44
+                    ],
+                    [
+                      123.67,
+                      -13.34
+                    ],
+                    [
+                      123.36,
+                      -13.34
+                    ],
+                    [
+                      123.36,
+                      -13.44
+                    ]
+                  ]
+                ]
+              },
+              "properties": {}
+            }
+          ]
+        }
+      },
+      "SpatialArea": {
+        "Wgs84Coordinates": {
+          "type": "FeatureCollection",
+          "features": [
+            {
+              "type": "Feature",
+              "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                  [
+                    [
+                      123.36,
+                      -13.44
+                    ],
+                    [
+                      123.67,
+                      -13.44
+                    ],
+                    [
+                      123.67,
+                      -13.34
+                    ],
+                    [
+                      123.36,
+                      -13.34
+                    ],
+                    [
+                      123.36,
+                      -13.44
+                    ]
+                  ]
+                ]
+              },
+              "properties": {}
+            }
+          ]
+        }
+      },
+      "ProcessingParameters": [
+        {
+          "ProcessingParameterTypeID": "opendes:reference-data--ProcessingParameterType:Migration:",
+          "ProcessingParameterValue": "Kirchhoff PSTM"
+        }
+      ],
+      "ExtensionProperties": {
+        "chevron_internal_survey_code": "AD3D-06"
+      }
+    },
+    "tags": {},
+    "createUser": "loader@contoso.com",
+    "modifyUser": "loader@contoso.com",
+    "meta": [
+      {
+        "kind": "Unit",
+        "name": "ms",
+        "persistableReference": "{\"symbol\":\"ms\"}",
+        "propertyNames": [
+          "SampleInterval"
+        ]
+      }
+    ]
+  }
+]

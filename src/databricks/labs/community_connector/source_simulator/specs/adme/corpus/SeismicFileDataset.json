@@ -1,0 +1,206 @@
+[
+  {
+    "acl": {
+      "viewers": [
+        "data.default.viewers@opendes.contoso.com"
+      ],
+      "owners": [
+        "data.default.owners@opendes.contoso.com"
+      ]
+    },
+    "legal": {
+      "legaltags": [
+        "opendes-public-usa-dataset"
+      ],
+      "otherRelevantDataCountries": [
+        "AU"
+      ],
+      "status": "compliant"
+    },
+    "version": 1710504000000,
+    "createTime": "2024-03-15T10:00:00.000Z",
+    "modifyTime": "2024-03-15T10:00:00.000Z",
+    "id": "opendes:dataset--FileCollection.SEGY:ADELE-PSTM-1:",
+    "kind": "osdu:wks:dataset--FileCollection.SEGY:1.1.0",
+    "data": {
+      "Name": "Adele PSTM SEG-Y",
+      "SEGYRevision": "rev0",
+      "DatasetProperties": {
+        "FileCollectionPath": "s3://bucket/adele/",
+        "FileSourceInfos": [
+          {
+            "FileSource": "adele.segy",
+            "FileSize": "3488703164"
+          }
+        ],
+        "IndexFilePath": "s3://bucket/adele/index.json"
+      },
+      "VectorHeaderMapping": [
+        {
+          "KeyName": "Inline",
+          "Position": 5,
+          "WordWidth": 4
+        },
+        {
+          "KeyName": "Crossline",
+          "Position": 21,
+          "WordWidth": 4
+        }
+      ],
+      "Description": "PSTM full stack, SEG-Y rev 0",
+      "EncodingFormatTypeID": "opendes:reference-data--EncodingFormatType:SEG-Y:",
+      "ExtensionProperties": {
+        "chevron_internal_survey_code": "AD3D-06"
+      }
+    },
+    "tags": {},
+    "createUser": "loader@contoso.com",
+    "modifyUser": "loader@contoso.com",
+    "meta": [
+      {
+        "kind": "Unit",
+        "name": "ms",
+        "persistableReference": "{\"symbol\":\"ms\"}",
+        "propertyNames": [
+          "SampleInterval"
+        ]
+      }
+    ]
+  },
+  {
+    "acl": {
+      "viewers": [
+        "data.default.viewers@opendes.contoso.com"
+      ],
+      "owners": [
+        "data.default.owners@opendes.contoso.com"
+      ]
+    },
+    "legal": {
+      "legaltags": [
+        "opendes-public-usa-dataset"
+      ],
+      "otherRelevantDataCountries": [
+        "AU"
+      ],
+      "status": "compliant"
+    },
+    "version": 1710504000001,
+    "createTime": "2024-03-16T08:30:00.000Z",
+    "modifyTime": "2024-03-16T08:30:00.000Z",
+    "id": "opendes:dataset--FileCollection.SEGY:ADELE-PSTM-2:",
+    "kind": "osdu:wks:dataset--FileCollection.SEGY:1.1.0",
+    "data": {
+      "Name": "Adele PSTM SEG-Y",
+      "SEGYRevision": "rev0",
+      "DatasetProperties": {
+        "FileCollectionPath": "s3://bucket/adele/",
+        "FileSourceInfos": [
+          {
+            "FileSource": "adele.segy",
+            "FileSize": "3488703164"
+          }
+        ],
+        "IndexFilePath": "s3://bucket/adele/index.json"
+      },
+      "VectorHeaderMapping": [
+        {
+          "KeyName": "Inline",
+          "Position": 5,
+          "WordWidth": 4
+        },
+        {
+          "KeyName": "Crossline",
+          "Position": 21,
+          "WordWidth": 4
+        }
+      ],
+      "Description": "PSTM full stack, SEG-Y rev 0",
+      "EncodingFormatTypeID": "opendes:reference-data--EncodingFormatType:SEG-Y:",
+      "ExtensionProperties": {
+        "chevron_internal_survey_code": "AD3D-06"
+      }
+    },
+    "tags": {},
+    "createUser": "loader@contoso.com",
+    "modifyUser": "loader@contoso.com",
+    "meta": [
+      {
+        "kind": "Unit",
+        "name": "ms",
+        "persistableReference": "{\"symbol\":\"ms\"}",
+        "propertyNames": [
+          "SampleInterval"
+        ]
+      }
+    ]
+  },
+  {
+    "acl": {
+      "viewers": [
+        "data.default.viewers@opendes.contoso.com"
+      ],
+      "owners": [
+        "data.default.owners@opendes.contoso.com"
+      ]
+    },
+    "legal": {
+      "legaltags": [
+        "opendes-public-usa-dataset"
+      ],
+      "otherRelevantDataCountries": [
+        "AU"
+      ],
+      "status": "compliant"
+    },
+    "version": 1710504000002,
+    "createTime": "2024-03-17T12:15:00.000Z",
+    "modifyTime": "2024-03-17T12:15:00.000Z",
+    "id": "opendes:dataset--FileCollection.SEGY:ADELE-PSTM-3:",
+    "kind": "osdu:wks:dataset--FileCollection.SEGY:1.1.0",
+    "data": {
+      "Name": "Adele PSTM SEG-Y",
+      "SEGYRevision": "rev0",
+      "DatasetProperties": {
+        "FileCollectionPath": "s3://bucket/adele/",
+        "FileSourceInfos": [
+          {
+            "FileSource": "adele.segy",
+            "FileSize": "3488703164"
+          }
+        ],
+        "IndexFilePath": "s3://bucket/adele/index.json"
+      },
+      "VectorHeaderMapping": [
+        {
+          "KeyName": "Inline",
+          "Position": 5,
+          "WordWidth": 4
+        },
+        {
+          "KeyName": "Crossline",
+          "Position": 21,
+          "WordWidth": 4
+        }
+      ],
+      "Description": "PSTM full stack, SEG-Y rev 0",
+      "EncodingFormatTypeID": "opendes:reference-data--EncodingFormatType:SEG-Y:",
+      "ExtensionProperties": {
+        "chevron_internal_survey_code": "AD3D-06"
+      }
+    },
+    "tags": {},
+    "createUser": "loader@contoso.com",
+    "modifyUser": "loader@contoso.com",
+    "meta": [
+      {
+        "kind": "Unit",
+        "name": "ms",
+        "persistableReference": "{\"symbol\":\"ms\"}",
+        "propertyNames": [
+          "SampleInterval"
+        ]
+      }
+    ]
+  }
+]

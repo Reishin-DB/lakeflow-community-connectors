@@ -35,6 +35,11 @@ from databricks.labs.community_connector.source_simulator.interceptor import (
 # Map an OSDU kind string (or wildcard form) to its corpus name. The
 # simulator's CorpusStore is keyed by these names (one JSON file each).
 _KIND_TO_CORPUS: dict[str, str] = {
+    "SeismicAcquisitionSurvey": "SeismicAcquisitionSurvey",
+    "SeismicProcessingProject": "SeismicProcessingProject",
+    "SeismicTraceData": "SeismicTraceData",
+    "SeismicBinGrid": "SeismicBinGrid",
+    "FileCollection.SEGY": "SeismicFileDataset",
     "Wellbore": "Wellbore",
     "Reservoir": "Reservoir",
     "Sample": "Rock_and_Fluid",
